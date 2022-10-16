@@ -4,12 +4,13 @@
 
 ```c++
 #include <iostream>
-#include "listy.h"
-void main()
+#include "lista.h"
+int main()
 {
     lista<int> x;
     x.addBack(2);
     std::cout<<x[0];
+    return 0;
 }
 ```
 >plik [node.h](node.h);\
