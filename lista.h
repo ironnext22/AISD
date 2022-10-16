@@ -129,11 +129,11 @@ public:
     }
     void removeback()
     {
-        remove(size());
+        remove(size()-1);
     }
     void removefront()
     {
-        remove(1);
+        remove(0);
     }
     friend std::ostream& operator<<(std::ostream& st, const lista<X>& x)
     {

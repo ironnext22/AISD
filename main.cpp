@@ -8,7 +8,7 @@ int main() {
    // x.displey();
     //std::cout<<std::endl;
     //std::cout<<x.size()<<std::endl;
-    x.remove(2);
+   // x.remove(2);
     //std::cout<<std::endl;
    // x.displey();
    // std::cout<<std::endl<<std::endl;
@@ -16,6 +16,7 @@ int main() {
    // x.clear();
     x.addBack(5.3);
     x.addBack(5.3);
+    x.removefront();
    // std::cout<<x[0];
    std::cout<<x;
    //x.displey();
