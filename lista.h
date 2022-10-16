@@ -4,11 +4,15 @@
 #define LISTY_LISTA_H
 template <class X>
 class lista {
-    node <X> *head;
+    node<X> *head;
 public:
-    lista()
-    {
+    lista() {
         head = NULL;
+    }
+
+    ~lista()
+    {
+        delete head;
     }
     void addFront(X n)
     {
@@ -59,23 +63,22 @@ public:
     }
     void remove(int nr)
     {
-        if(nr==1)
+        if(nr==0)
         {
             node<X>* temp = head;
             head = temp->next;
             delete temp;
         }
-        else if(nr >= 2)
+        else if(nr >= 1)
         {
-            int j = 1;
             node<X>* tmp = head;
-            while (tmp)
+            node<X>* t2m = head->next->next;
+            for(int j=1;j<nr;j++)
             {
-                if ((j+1)==nr) break;
                 tmp = tmp->next;
-                j++;
+                t2m = t2m->next;
             }
-            if(tmp->next->next == 0)
+            if(t2m == nullptr)
             {
                 delete tmp->next;
                 tmp->next=0;
@@ -83,7 +86,7 @@ public:
             else
             {
                 node<X> *usuwana = tmp->next;
-                tmp->next = tmp->next->next;
+                tmp->next = t2m;
                 delete usuwana;
             }
         }
@@ -107,6 +110,40 @@ public:
         {
             remove(i);
         }
+    }
+    X operator[ ](int liczba)
+    {
+        node<X>* tail = head;
+        X tmp;
+        for(int i=0;i<=liczba;i++)
+        {
+            tmp = tail->data;
+            tail = tail->next;
+        }
+        return tmp;
+    }
+    bool empty()
+    {
+        if(head == nullptr)return true;
+        else return false;
+    }
+    void removeback()
+    {
+        remove(size());
+    }
+    void removefront()
+    {
+        remove(1);
+    }
+    friend std::ostream& operator<<(std::ostream& st, const lista<X>& x)
+    {
+        node<X>* tmp = x.head;
+        while(tmp != nullptr)
+        {
+            st<<tmp->data<<std::endl;
+            tmp = tmp->next;
+        }
+        return st;
     }
 };
 #endif //LISTY_LISTA_H
