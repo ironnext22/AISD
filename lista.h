@@ -32,7 +32,7 @@ public:
             head=tmp;
             return;
         }
-        node<X>* tail;
+        node<X>* tail = head;
         while(tail->next!= NULL)
         {
             tail=tail->next;
@@ -50,15 +50,20 @@ public:
     }
     void Add(X n,int a)
     {
-        node<X>* tmp = new node<X>;
-        tmp->data = n;
-        tmp->next = NULL;
-        node<X>* c = head;
-        while(tmp->next->data!=a)
+        if(a>size())return;
+        else if(a==0)addFront(n);
+        else
         {
-            c=c->next;
-            tmp->next=c->next;
-            c->next=head;
+            node<X>* tmp = head;
+            for(int i=1;i<a;i++)
+            {
+                tmp = tmp->next;
+            }
+            node<X>* x = tmp->next;
+            node<X> od;
+            tmp->next = &od;
+            od.next = x;
+            od.data=n;
         }
     }
     void remove(int nr)

@@ -3,7 +3,11 @@
 int main()
 {
     lista<int> x;
-    x.addBack(2);
-    std::cout<<x[0];
+    for(int i=0;i<5;i++)
+    {
+        x.addBack(i);
+    }
+    x.Add(3,2);
+    std::cout<<x;
     return 0;
 }
