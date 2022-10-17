@@ -14,11 +14,11 @@ int main()
 >plik [node.h](node.h);\
 >plik [lista.h](lista.h);
 
-## To Do
-- [x] dodanie do listy
-- [x] usuwanie z listy
-- [x] zwracanie elementu listy
-- [x] wyświetlanie listy
-- [x] kopiowanie listy
-- [x] czyszczenie listy
-- [x] długość listy
+>## To Do
+>- [x] dodanie do listy
+>- [x] usuwanie z listy
+>- [x] zwracanie elementu listy
+>- [x] wyświetlanie listy
+>- [x] kopiowanie listy
+>- [x] czyszczenie listy
+>- [x] długość listy
