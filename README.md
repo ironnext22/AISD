@@ -19,6 +19,6 @@ int main()
 - [x] usuwanie z listy
 - [x] zwracanie elementu listy
 - [x] wyświetlanie listy
-- [ ] kopiowanie listy
+- [x] kopiowanie listy
 - [x] czyszczenie listy
 - [x] długość listy

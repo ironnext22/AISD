@@ -16,7 +16,7 @@ public:
     }
     void addFront(X n)
     {
-        node<X>* tmp = new node<X>;
+        auto tmp = new node<X>;
         tmp->data = n;
         tmp->next = head;
         head = tmp;
@@ -24,7 +24,7 @@ public:
     }
     void addBack(X n)
     {
-        node<X>* tmp = new node<X>;
+        auto tmp = new node<X>;
         tmp->data = n;
         tmp->next = NULL;
         if(!head)
@@ -149,6 +149,15 @@ public:
             tmp = tmp->next;
         }
         return st;
+    }
+    void copy(lista<X>* tmp)
+    {
+        node<X>* x = tmp->head;
+        while(x != nullptr)
+        {
+            addBack(x->data);
+            x = x->next;
+        }
     }
 };
 #endif //LISTY_LISTA_H
