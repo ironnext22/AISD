@@ -40,7 +40,7 @@ public:
         }
         tail->next=tmp;
     }
-    void displey()
+    void display()
     {
         node<X>* tmp = head;
         while(tmp != nullptr)
