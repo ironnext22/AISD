@@ -10,10 +10,12 @@ public:
     {
         head = NULL;
     }
-
     ~lista()
     {
-        delete head;
+        for(int i = size()-1;i>=0;i--)
+        {
+            removefront();
+        }
     }
     void addFront(X n)
     {
@@ -69,6 +71,7 @@ public:
     }
     void remove(int nr)
     {
+        if(head == nullptr)return;
         if(nr==0)
         {
             node<X>* temp = head;
@@ -112,7 +115,7 @@ public:
     }
     void clear()
     {
-        for(int i = size();i>0;i--)
+        for(int i = size()-1;i>=0;i--)
         {
             remove(i);
         }
@@ -135,11 +138,23 @@ public:
     }
     void removeback()
     {
-        remove(size()-1);
+        if(head == nullptr)return;
+        node<X>* tmp = head;
+        while(tmp->next->next != nullptr)
+        {
+            tmp=tmp->next;
+        }
+        delete tmp->next;
+        tmp->next=0;
+       // remove(size()-1);
     }
     void removefront()
     {
-        remove(0);
+        if(head == nullptr)return;
+        node<X>* temp = head;
+        head = temp->next;
+        delete temp;
+        //remove(0);
     }
     friend std::ostream& operator<<(std::ostream& st, const lista<X>& x)
     {
@@ -159,6 +174,27 @@ public:
             addBack(x->data);
             x = x->next;
         }
+    }
+    explicit lista(lista<X>* tmp)
+    {
+        head = nullptr;
+        node<X>* x = tmp->head;
+        while(x != nullptr)
+        {
+            addBack(x->data);
+            x = x->next;
+        }
+    }
+    node<X> clone(X element)
+    {
+        node<X>* tmp = head;
+        auto zw = new node<X>;
+        for(int i=0;i<element;i++)
+        {
+            tmp=tmp->next;
+        }
+        zw->data = tmp->data;
+        return *zw;
     }
 };
 #endif //LISTY_LISTA_H
