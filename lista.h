@@ -6,6 +6,7 @@ template <class X>
 class lista {
     node<X> *head;
 public:
+
     lista()
     {
         head = NULL;
