@@ -1,0 +1,3 @@
+C:/Users/wikto/CLionProjects/AISD/listy-lest/cmake-build-debug/CMakeFiles/rebuild_cache.dir
+C:/Users/wikto/CLionProjects/AISD/listy-lest/cmake-build-debug/CMakeFiles/listy_lest.dir
+C:/Users/wikto/CLionProjects/AISD/listy-lest/cmake-build-debug/CMakeFiles/edit_cache.dir
