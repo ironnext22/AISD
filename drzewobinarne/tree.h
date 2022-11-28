@@ -1,12 +1,12 @@
 #include <iostream>
 #include <stdlib.h>
 #include <ctime>
-
 #include "node.h"
 
 using namespace  std;
 
 template<typename T>
+
 class tree{
 public:
     node<T>* root;
@@ -15,42 +15,35 @@ public:
         root=NULL;
     }
 
-    //--------------------------------//
-    //Dodawanie elmentu do drzewa
     void add(T a){
-        node<T>* el= new node<T>;   //element, który chcę dodać
-        node<T> *parent;            //poprzedni element
+        node<T>* el= new node<T>;
+        node<T> *parent;
 
-        //nadawanie wartosci początkowych
         el->key=a;
         el->left=NULL;
         el->right=NULL;
 
         parent=NULL;
 
-        if(root==NULL) root=el;     //jesli root nie istnieje to element staje się rootem
+        if(root==NULL) root=el;
 
-        else{                       //jesli element istnieje
-            node<T>*pom;            //zmienna pomocnicza
-            pom=root;               //nadajemy jej wartosc roota
+        else{
+            node<T>*pom;
+            pom=root;
 
             while(pom!=NULL){
                 parent=pom;
 
-                if(pom->key>=a) pom=pom->right;     //jesli wieksze lub rowne to pom w prawo
-                else pom=pom->left;                 // jesli odwrotnie to w lewo
+                if(pom->key>=a) pom=pom->right;
+                else pom=pom->left;
             }
 
-            if(parent->key<a) parent->left=el;      //jesli mniejsze to poprzedni element w lewo
-            else parent->right=el;                  // jesli odwrotnie to w prawo
+            if(parent->key<a) parent->left=el;
+            else parent->right=el;
         }
 
     }
 
-    //--------------------------------//
-    //Wypisywanie drzewa
-
-    //rosnąco
     void inorder(node<T>* el){  //in-order
         if(el!=NULL){
             inorder(el->right);
@@ -59,11 +52,10 @@ public:
         }
     }
 
-    //malejąco
     void preorder(node<T>* el){  //pre-order
         if(el!=NULL){
             preorder(el->left);
-            cout<<" "<<el->key;
+            cout<<" "<<el->data;
             preorder(el->right);
         }
     }
@@ -71,7 +63,6 @@ public:
         inorder(root);
     }
 
-    //--------------------------------//
     //Usuwanie calego drzewa
     void treedelete(node<T>* el) {
         if (el) {
@@ -80,49 +71,12 @@ public:
             delete el;
         }
     }
-
-    //Usuwanie pojedynczego wezla
-    node<T>* remove(int x, node<T>* t)
-    {
-        node<T>* temp;
-        if(t == NULL)
-            return NULL;
-        else if(x < t->key)
-            t->left = remove(x, t->left);
-        else if(x > t->key)
-            t->right = remove(x, t->right);
-        else if(t->left && t->right)
-        {
-            temp = minmaxkey(t->right,true);
-            t->key = temp->key;
-            t->right = remove(t->key, t->right);
-        }
-        else
-        {
-            temp = t;
-            if(t->left == NULL)
-                t = t->right;
-            else if(t->right == NULL)
-                t = t->left;
-            delete temp;
-        }
-        return t;
-    }
-    void remove(int x)
-    {
-        root = remove(x, root);
-    }
-
-    //--------------------------------//
-    //Wyszukiwanie węzła w drzewie
     node<T>* find(node<T>* el, int key){
         while(el && el->key != key){
-            el = (key < el->key ) ? el->left: el->right;
+            el = (key > el->key ) ? el->left: el->right;
         }
         return el;
     }
-
-    //Wyszukiwanie następcy
     node<T>* nast(node<T>* el){
         node<T>* pom;
 
@@ -142,7 +96,6 @@ public:
         return el;
     }
 
-    //Wyszukiwanie poprzednika
     node<T>* poprz(node<T>* el){
         node<T>* pom;
 
@@ -162,7 +115,6 @@ public:
         return el;
     }
 
-    //Wyszukiwanie węzla o najmniejszym/wiekszym kluczu
     node<T>* minmaxkey ( node<T>* el, bool a )
     {
         if(a==true){
@@ -175,4 +127,36 @@ public:
         }
     }
 
+    node<T>* del(node<T>* root, int value) {
+
+        if (root == NULL)
+            return root;
+
+        if (value > (int) root->key) {
+            root->left = del(root->left, value);
+        } else if (value < (int) root->key) {
+            root->right = del(root->right, value);
+        } else {
+
+            if (root->left == nullptr) {
+                return root->right;
+            } else if (root->right == nullptr)
+                return root->left;
+
+            root->key = inOrderSuccessor(root->right);
+            root->right = del(root->right, (int) root->key);
+        }
+
+        return root;
+
+    }
+    int inOrderSuccessor(node<T>* root) {
+        int minimum = (int) root->key;
+        while (root->left != nullptr) {
+            minimum = (int) root->left->key;
+            root = root->left;
+        }
+        return minimum;
+    }
 };
+
