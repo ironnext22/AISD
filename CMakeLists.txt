@@ -3,4 +3,4 @@ project(drzewobinarne)
 
 set(CMAKE_CXX_STANDARD 14)
 
-add_executable(drzewobinarne main.cpp listy/node.h drzewobinarne/tree.h)
+add_executable(drzewobinarne main.cpp listy/node.h drzewobinarne/tree.h sort/sorty.h sort/sorty.cpp)

@@ -1,53 +1,51 @@
-//#include "listy/prezydenci.h"
-//#include "listy/nobel.h"
-#include "drzewobinarne/tree.h"
-void rezerwacja(int minuta,tree<int>& x);
-void usunlot(int minuta,tree<int> &x);
+#include <iostream>
+#include "sort/sorty.h"
+#include <algorithm>
 int main()
 {
-    tree<int> x;
+    int lista[] = {1,2,8,4,5};
 
-    x.add(50);
-    x.add(24);
-    x.add(50);
-    x.add(58);
-
-    x.display();
+    for(auto x : lista)
+    {
+        std::cout<<x<<" ";
+    }
+    std::cout<<std::endl;
+    std::sort(lista,lista+5);
+    for(auto x : lista)
+    {
+        std::cout<<x<<" ";
+    }
     cout<<endl;
-    rezerwacja(59,x);
-    x.display();
-   // rezerwacja(4,x);
-   // cout<<endl;
-   // x.display();
+
+///Counter sort
+    char arr[] = "geeksforgeeks";
+
+    // Function call
+    countSort(arr);
+
+    cout << "Sorted character array is " <<arr<<endl;
+
+///Radix sort
+    int arr1[] = { 170, 45, 75, 90, 802, 24, 2, 66 };
+    int n = sizeof(arr1) / sizeof(arr1[0]);
+
+    // Function Call
+    radixsort(arr1, n);
+    print(arr1, n);
+    cout<<endl;
+
+///Bucket sort
+    float arr2[]= { 0.897, 0.565, 0.656, 0.1234, 0.665, 0.3434 };
+    int n1 = sizeof(arr2) / sizeof(arr2[0]);
+    bucketSort(arr2, n1);
+
+    cout << "\nSorted array is \n";
+    for (int i = 0; i < n1; i++)
+        cout << arr2[i] << " ";
 
     return 0;
 }
-void usunlot(int minuta,tree<int> &x){
-    node<int>* el;
-    for(int i=0;i<minuta;i++)
-    {
-        x.del(x.root,i);
-    }
-    // //wezel - do usuniecia
-}
 
-void rezerwacja(int minuta,tree<int> &x) {
-    time_t czas1;
-    time(&czas1);
-    struct tm *godzina = localtime(&czas1);
-    usunlot(godzina->tm_min,x);
-    if (minuta < godzina->tm_min) {
-        cout << "Za wczesna rezerwacja" << endl;
-        return;
-    }
 
-    for(int i=-3; i<4; i++)
-    {
-        if(x.find(x.root, minuta+i) != nullptr){
-            cout<<"Rezerwacja nie moze się odbyc w tej godzinie"<<endl;
-            return;
-        }
-    }
-    x.add(minuta);
-}
+
 
